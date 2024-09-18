@@ -51,12 +51,15 @@ public class ForkJoin {
         private String searchInFile(File file, String searchTerm) {
             try (BufferedReader reader = Files.newBufferedReader(file.toPath())) {
                 String line;
+                int lineNumber = 0;
+
                 while ((line = reader.readLine()) != null) {
+                    lineNumber++;
                     if (isCancelled()) {
                         return null;
                     }
                     if (line.contains(searchTerm)) {
-                        return "Encontrado no arquivo: " + file.getName();
+                        return "Arquivo: " + file.getName() + "\nLinha: " + lineNumber;
                     }
                 }
             } catch (IOException e) {
@@ -68,13 +71,13 @@ public class ForkJoin {
 
     public static void main(String[] args) {
         String directoryPath = "C:/Users/IMPACTO/Documents/dev/paralelismo/dataset_g";
-        String searchTerm = "Patricia Jordan";
+        String searchTerm = "Alicia Orr";
 
         File folder = new File(directoryPath);
         File[] filesArray = folder.listFiles((dir, name) -> name.endsWith(".txt"));
 
         if (filesArray == null || filesArray.length == 0) {
-            System.out.println("Nenhum arquivo .txt.");
+            System.out.println("Nenhum arquivo .txt encontrado.");
             return;
         }
 
@@ -95,6 +98,6 @@ public class ForkJoin {
             System.out.println("Nome não encontrado.");
         }
 
-        System.out.println("Tempo de execução: " + (endTime - startTime) + " ms");
+        System.out.println("Tempo: " + (endTime - startTime) + " ms");
     }
 }
