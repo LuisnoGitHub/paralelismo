@@ -15,7 +15,7 @@ public class MultiThreadedSearch {
 
     public static void executar() throws InterruptedException {
         System.out.println("Executando Multithread");
-
+        long initialTimeTotalExecution = System.currentTimeMillis();
         LoadFiles loadFiles = new LoadFiles();
 
         HashMap<String, Long> resultadoTempo = new HashMap<>();
@@ -23,15 +23,17 @@ public class MultiThreadedSearch {
 
         CountDownLatch latch = new CountDownLatch(palavras.size());
 
-         for (String searchTerm : palavras) {
+        for (String searchTerm : palavras) {
             Thread thread = new Thread(new FileSearchTask(loadFiles.getFiles(), searchTerm, resultadoTempo, latch));
             thread.start();
         }
         latch.await();
 
-        System.out.println("\nResultado ordenado pelo tempo de execução:");
-        resultadoTempo.entrySet().stream()
-                .sorted(Map.Entry.comparingByValue())
-                .forEach(entry -> System.out.printf("%s - Tempo: %d ms%n \n", entry.getKey(), entry.getValue()));
+        long finalTimeTotalExecution = System.currentTimeMillis();
+        System.out.printf("\nExecutado em %s ms: ", (finalTimeTotalExecution - initialTimeTotalExecution));
+//        System.out.println("\nResultado ordenado pelo tempo de execução:");
+//        resultadoTempo.entrySet().stream()
+//                .sorted(Map.Entry.comparingByValue())
+//                .forEach(entry -> System.out.printf("%s - Tempo: %d ms%n \n", entry.getKey(), entry.getValue()));
     }
 }

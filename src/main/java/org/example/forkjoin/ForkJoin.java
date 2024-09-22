@@ -15,6 +15,7 @@ public class ForkJoin {
 
     public static void executar() {
         System.out.println("Executando ForkJoin");
+        long initialTimeTotalExecution = System.currentTimeMillis();
 
         LoadFiles loadFiles = new LoadFiles();
         HashMap<String, Long> resultadoTempo = new HashMap<>();
@@ -35,9 +36,11 @@ public class ForkJoin {
                 System.out.println("Nome não encontrado.");
             }
         }
-        System.out.println("\nResultado ordenado pelo tempo de execução:");
-        resultadoTempo.entrySet().stream()
-                .sorted(Map.Entry.comparingByValue())
-                .forEach(entry -> System.out.printf("%s - Tempo: %d ms%n \n", entry.getKey(), entry.getValue()));
+        long finalTimeTotalExecution = System.currentTimeMillis();
+        System.out.printf("\nExecutado em %s ms: ", (finalTimeTotalExecution - initialTimeTotalExecution));
+//        System.out.println("\nResultado ordenado pelo tempo de execução:");
+//        resultadoTempo.entrySet().stream()
+//                .sorted(Map.Entry.comparingByValue())
+//                .forEach(entry -> System.out.printf("%s - Tempo: %d ms%n \n", entry.getKey(), entry.getValue()));
     }
 }

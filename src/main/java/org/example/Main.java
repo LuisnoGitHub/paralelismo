@@ -9,7 +9,7 @@ public class Main {
 
 
 //        ForkJoin.executar();
-        MultiThreadedSearch.executar();
-//        UniThread.executar();
+//        MultiThreadedSearch.executar();
+        UniThread.executar();
     }
 }
