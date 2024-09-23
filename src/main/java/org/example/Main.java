@@ -6,8 +6,6 @@ import org.example.unithread.UniThread;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException {
-
-
 //        ForkJoin.executar();
 //        MultiThreadedSearch.executar();
         UniThread.executar();

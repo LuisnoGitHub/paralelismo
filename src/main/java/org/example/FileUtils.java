@@ -15,7 +15,7 @@ public class FileUtils {
             while ((line = reader.readLine()) != null) {
                 lineNumber++;
                 if (line.contains(searchTerm)) {
-                    return "Arquivo: " + file.getName() + " Linha: " + lineNumber;
+                    return "\n" + file.getName() + "\n" + lineNumber;
                 }
             }
         } catch (IOException e) {

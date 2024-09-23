@@ -1,5 +1,6 @@
 package org.example.threads;
 
+import org.example.Configs;
 import org.example.LoadFiles;
 
 import java.util.Collections;
@@ -14,12 +15,12 @@ public class MultiThreadedSearch {
 
 
     public static void executar() throws InterruptedException {
-        System.out.println("Executando Multithread");
+        System.out.println("Multithread");
         long initialTimeTotalExecution = System.currentTimeMillis();
         LoadFiles loadFiles = new LoadFiles();
 
         HashMap<String, Long> resultadoTempo = new HashMap<>();
-        List<String> palavras = MULTITASK ? loadFiles.getPalavras() : Collections.singletonList("Heather Edwards");
+        List<String> palavras = MULTITASK ? loadFiles.getPalavras() : Collections.singletonList(Configs.SEARCH_TERM);
 
         CountDownLatch latch = new CountDownLatch(palavras.size());
 
@@ -30,10 +31,13 @@ public class MultiThreadedSearch {
         latch.await();
 
         long finalTimeTotalExecution = System.currentTimeMillis();
-        System.out.printf("\nExecutado em %s ms: ", (finalTimeTotalExecution - initialTimeTotalExecution));
-//        System.out.println("\nResultado ordenado pelo tempo de execução:");
-//        resultadoTempo.entrySet().stream()
-//                .sorted(Map.Entry.comparingByValue())
-//                .forEach(entry -> System.out.printf("%s - Tempo: %d ms%n \n", entry.getKey(), entry.getValue()));
+        if(MULTITASK){
+            System.out.println("\nResultado ordenado pelo tempo de execução:");
+
+        }
+        resultadoTempo.entrySet().stream()
+                .sorted(Map.Entry.comparingByValue())
+                .forEach(entry -> System.out.printf("%s\n%d ms%n", entry.getKey(), entry.getValue()));
+        System.out.printf("%s ms", (finalTimeTotalExecution - initialTimeTotalExecution));
     }
 }
