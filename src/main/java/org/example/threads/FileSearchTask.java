@@ -25,7 +25,7 @@ public class FileSearchTask implements Runnable {
             if (result != null) {
                 long endTime = System.currentTimeMillis();
                 synchronized (resultadoTempo) {
-                    resultadoTempo.put("nome: " + searchTerm + " " + result, endTime - startTime);
+                    resultadoTempo.put(searchTerm + " " + result, endTime - startTime);
                 }
                 break;
             }

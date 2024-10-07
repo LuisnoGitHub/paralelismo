@@ -15,7 +15,7 @@ public class LoadFiles {
     private List<File> files = new ArrayList<>();
 
     public LoadFiles() {
-        String directoryPath = "src/main/resources/dataset_p/";
+        String directoryPath = "src/main/resources/dataset_g/";
 
         File folder = new File(directoryPath);
         File[] filesArray = folder.listFiles((dir, name) -> name.endsWith(".txt"));
