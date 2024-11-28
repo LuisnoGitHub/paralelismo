@@ -29,6 +29,7 @@ public class AloImpl implements AloInt {
         }
     }
 
+
     @Override
     public double Somar(double a, double b) throws RemoteException {
         return a + b;

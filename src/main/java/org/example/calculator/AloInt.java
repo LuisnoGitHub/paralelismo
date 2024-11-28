@@ -8,3 +8,4 @@ public interface AloInt extends Remote {
     double Dividir(double a, double b) throws RemoteException;
     double Multiplicar(double a, double b) throws RemoteException;
 }
+
